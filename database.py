@@ -8,6 +8,7 @@ engine = create_engine(db_connection,
                          "ssl_ca": "/etc/ssl/cert.pem",
                        }})
 
+
 def load_jobs_from_db():
   with engine.connect() as conn:
     results = conn.execute(text("select * from jobs"))
@@ -16,4 +17,3 @@ def load_jobs_from_db():
     for row in results.all():
       jobss.append(dict(zip(column_names, row)))
     return (jobss)
-
